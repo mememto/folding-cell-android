@@ -127,16 +127,17 @@ public class FoldingCell extends RelativeLayout {
         titleView.setVisibility(GONE);
         contentView.setVisibility(GONE);
 
-        // Measure views and take a bitmaps to replace real views with images
-        Bitmap bitmapFromTitleView = measureViewAndGetBitmap(titleView, this.getMeasuredWidth());
-        Bitmap bitmapFromContentView = measureViewAndGetBitmap(contentView, this.getMeasuredWidth());
-
         if (skipAnimation) {
             contentView.setVisibility(VISIBLE);
             FoldingCell.this.mUnfolded = true;
             FoldingCell.this.mAnimationInProgress = false;
             this.getLayoutParams().height = contentView.getHeight();
         } else {
+
+            // Measure views and take a bitmaps to replace real views with images
+            Bitmap bitmapFromTitleView = measureViewAndGetBitmap(titleView, this.getMeasuredWidth());
+            Bitmap bitmapFromContentView = measureViewAndGetBitmap(contentView, this.getMeasuredWidth());
+
             // create layout container for animation elements
             final LinearLayout foldingLayout = createAndPrepareFoldingContainer();
             this.addView(foldingLayout);
